@@ -1,0 +1,48 @@
+### REGISTER
+POST http://localhost:10000/api/v1/user/register
+Content-Type: application/json
+
+{
+  "email": "admin@tunas.id",
+  "password": "rahasia"
+}
+
+### LOGIN
+POST http://localhost:10000/api/v1/user/login
+Content-Type: application/json
+
+{
+  "email": "admin@tunas.id",
+  "password": "rahasia"
+}
+
+### UPDATE PROFILE
+PUT http://localhost:10000/api/v1/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTMzODcwNzAxODk4NDgwMDAsInVzZXJJZCI6IjkxMTA4MmQwLTI1NWEtMTFlZS1iZjU3LThjODU5MDc4YzllYyJ9.dtMtPTLngxBU5T7hbvUlTE6NcuqATncfFZQi0JUSMKA
+
+{
+  "email": "admin@tunas.id",
+  "username": "rahasia",
+  "name": "john doe",
+  "mobilePhoneNumber": "081000000000",
+  "profileImageUrl": ""
+}
+
+### GET PROFILE
+GET http://localhost:10000/api/v1/user/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTMzODcwNzAxODk4NDgwMDAsInVzZXJJZCI6IjkxMTA4MmQwLTI1NWEtMTFlZS1iZjU3LThjODU5MDc4YzllYyJ9.dtMtPTLngxBU5T7hbvUlTE6NcuqATncfFZQi0JUSMKA
+
+### TOKEN
+POST http://localhost:10000/api/v1/user/token
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODk2Nzg3NDA2MzI1NTMwMDAsInVzZXJJZCI6IjkxMTA4MmQwLTI1NWEtMTFlZS1iZjU3LThjODU5MDc4YzllYyJ9.6etV7QshsT26MZvZChlnORJbr32XLB2a9N0mZodaP1o"
+}
+
+###
+GET http://localhost:10000/api/v1/user/token
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTMzODcwNzAxODk4NDgwMDAsInVzZXJJZCI6IjkxMTA4MmQwLTI1NWEtMTFlZS1iZjU3LThjODU5MDc4YzllYyJ9.dtMtPTLngxBU5T7hbvUlTE6NcuqATncfFZQi0JUSMKA
