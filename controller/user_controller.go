@@ -2,7 +2,7 @@ package controller
 
 import "github.com/gin-gonic/gin"
 
-type Controller interface {
+type UserController interface {
 	Register(ctx *gin.Context)
 	Login(ctx *gin.Context)
 	Token(ctx *gin.Context)

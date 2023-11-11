@@ -5,6 +5,7 @@ import (
 	"github.com/ramdanariadi/grocery-user-service/dto"
 	"github.com/ramdanariadi/grocery-user-service/exception"
 	service "github.com/ramdanariadi/grocery-user-service/service"
+	"github.com/ramdanariadi/grocery-user-service/utils"
 	"gorm.io/gorm"
 )
 
@@ -12,13 +13,14 @@ type UserControllerImpl struct {
 	UserService service.Service
 }
 
-func NewUserController(db *gorm.DB) *UserControllerImpl {
+func NewUserController(db *gorm.DB) UserController {
 	return &UserControllerImpl{UserService: service.NewUserService(db)}
 }
 
 func (controller *UserControllerImpl) Register(ctx *gin.Context) {
 	registerDTO := dto.RegisterDTO{}
-	ctx.ShouldBind(&registerDTO)
+	err := ctx.ShouldBind(&registerDTO)
+	utils.PanicIfError(err)
 	tokenDTO := controller.UserService.Register(&registerDTO)
 	ctx.JSON(200, gin.H{"data": tokenDTO})
 }
@@ -56,7 +58,8 @@ func (controller *UserControllerImpl) Login(ctx *gin.Context) {
 
 func (controller *UserControllerImpl) Token(ctx *gin.Context) {
 	tokenDTO := dto.TokenDTO{}
-	ctx.ShouldBind(&tokenDTO)
+	err := ctx.ShouldBind(&tokenDTO)
+	utils.PanicIfError(err)
 	token := controller.UserService.Token(tokenDTO)
 	ctx.JSON(200, gin.H{"data": token})
 }
