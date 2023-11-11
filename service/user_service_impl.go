@@ -26,9 +26,9 @@ func NewUserService(db *gorm.DB) *UserServiceImpl {
 
 func (service UserServiceImpl) Login(requestBody *dto.LoginDTO) *dto.TokenDTO {
 	user := model.User{Email: requestBody.Email}
-	tx := service.DB.Where("email = ?", requestBody.Email).Find(&user)
+	tx := service.DB.Find(&user)
 
-	if tx.Row() == nil {
+	if tx.RowsAffected < 1 {
 		panic(exception.ValidationException{Message: "UNAUTHORIZED"})
 	}
 	salt := os.Getenv("SALT")
