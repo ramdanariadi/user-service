@@ -1,10 +1,10 @@
-package controller
+package middleware
 
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
 	"github.com/ramdanariadi/grocery-user-service/exception"
-	service "github.com/ramdanariadi/grocery-user-service/service"
+	"github.com/ramdanariadi/grocery-user-service/utils"
 	"strings"
 )
 
@@ -19,7 +19,7 @@ func Middleware(ctx *gin.Context) {
 		panic(exception.AuthenticationException{Message: "UNAUTHORIZED"})
 	}
 
-	token := service.VerifyToken(split[1])
+	token := utils.VerifyToken(split[1])
 
 	claims := token.Claims.(jwt.MapClaims)
 	userId := claims["userId"]
